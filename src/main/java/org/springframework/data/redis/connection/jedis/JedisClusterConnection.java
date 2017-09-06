@@ -45,6 +45,7 @@ import org.springframework.data.redis.ClusterStateFailureException;
 import org.springframework.data.redis.ExceptionTranslationStrategy;
 import org.springframework.data.redis.FallbackExceptionTranslationStrategy;
 import org.springframework.data.redis.PassThroughExceptionTranslationStrategy;
+import org.springframework.data.redis.RedisSystemException;
 import org.springframework.data.redis.connection.ClusterCommandExecutor;
 import org.springframework.data.redis.connection.ClusterCommandExecutor.ClusterCommandCallback;
 import org.springframework.data.redis.connection.ClusterCommandExecutor.MultiKeyClusterCommandCallback;
@@ -4004,7 +4005,10 @@ public class JedisClusterConnection implements RedisClusterConnection {
 	 */
 
 	protected DataAccessException convertJedisAccessException(Exception ex) {
-		return EXCEPTION_TRANSLATION.translate(ex);
+
+		DataAccessException translated = EXCEPTION_TRANSLATION.translate(ex);
+
+		return translated != null ? translated : new RedisSystemException(ex.getMessage(), ex);
 	}
 
 	/*
