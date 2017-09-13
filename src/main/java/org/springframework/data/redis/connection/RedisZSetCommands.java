@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -57,8 +58,8 @@ public interface RedisZSetCommands {
 	 */
 	class Range {
 
-		Boundary min;
-		Boundary max;
+		@Nullable Boundary min;
+		@Nullable Boundary max;
 
 		/**
 		 * @return new {@link Range}

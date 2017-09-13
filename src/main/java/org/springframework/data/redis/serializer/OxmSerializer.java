@@ -22,6 +22,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.Nullable;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.util.Assert;
@@ -34,12 +35,13 @@ import org.springframework.util.Assert;
  */
 public class OxmSerializer implements InitializingBean, RedisSerializer<Object> {
 
-	private Marshaller marshaller;
-	private Unmarshaller unmarshaller;
+	private @Nullable Marshaller marshaller;
+	private @Nullable Unmarshaller unmarshaller;
 
 	public OxmSerializer() {}
 
 	public OxmSerializer(Marshaller marshaller, Unmarshaller unmarshaller) {
+
 		this.marshaller = marshaller;
 		this.unmarshaller = unmarshaller;
 
@@ -47,7 +49,8 @@ public class OxmSerializer implements InitializingBean, RedisSerializer<Object> 
 	}
 
 	public void afterPropertiesSet() {
-		Assert.notNull(marshaller, "non-null marshaller required");
+
+		Assert.notNull(marshaller, "non-null marshaller required"); // TODO: use Illegal state exception
 		Assert.notNull(unmarshaller, "non-null unmarshaller required");
 	}
 

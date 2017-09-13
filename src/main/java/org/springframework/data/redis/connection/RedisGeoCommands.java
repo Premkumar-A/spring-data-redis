@@ -29,6 +29,7 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metric;
 import org.springframework.data.geo.Point;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -212,8 +213,8 @@ public interface RedisGeoCommands {
 	class GeoRadiusCommandArgs implements Cloneable {
 
 		Set<Flag> flags = new LinkedHashSet<>(2, 1);
-		Long limit;
-		Direction sortDirection;
+		@Nullable Long limit;
+		@Nullable Direction sortDirection;
 
 		private GeoRadiusCommandArgs() {}
 

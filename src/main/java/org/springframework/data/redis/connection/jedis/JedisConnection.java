@@ -15,6 +15,7 @@
  */
 package org.springframework.data.redis.connection.jedis;
 
+import org.springframework.lang.Nullable;
 import redis.clients.jedis.BinaryJedis;
 import redis.clients.jedis.BinaryJedisPubSub;
 import redis.clients.jedis.Builder;
@@ -100,14 +101,14 @@ public class JedisConnection extends AbstractRedisConnection {
 
 	private final Jedis jedis;
 	private final Client client;
-	private Transaction transaction;
+	private @Nullable Transaction transaction;
 	private final Pool<Jedis> pool;
 	/**
 	 * flag indicating whether the connection needs to be dropped or not
 	 */
 	private boolean broken = false;
-	private volatile JedisSubscription subscription;
-	private volatile Pipeline pipeline;
+	private volatile @Nullable  JedisSubscription subscription;
+	private volatile @Nullable  Pipeline pipeline;
 	private final int dbIndex;
 	private final String clientName;
 	private boolean convertPipelineAndTxResults = true;

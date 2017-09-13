@@ -16,11 +16,13 @@
 package org.springframework.data.redis.connection;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 
 /**
  * The result of an asynchronous operation
  * 
  * @author Jennifer Hickey
+ * @author Christoph Strobl
  * @param <T> The data type of the object that holds the future result (usually of type Future)
  */
 abstract public class FutureResult<T> {
@@ -29,7 +31,7 @@ abstract public class FutureResult<T> {
 
 	protected boolean status = false;
 
-	@SuppressWarnings("rawtypes") protected Converter converter;
+	@SuppressWarnings("rawtypes") protected @Nullable Converter converter;
 
 	public FutureResult(T resultHolder) {
 		this.resultHolder = resultHolder;

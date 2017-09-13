@@ -15,6 +15,7 @@
  */
 package org.springframework.data.redis.connection;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
@@ -26,12 +27,12 @@ import org.springframework.util.ObjectUtils;
  */
 public class RedisNode implements NamedNode {
 
-	String id;
-	String name;
-	String host;
+	@Nullable String id;
+	@Nullable String name;
+	@Nullable String host;
 	int port;
-	NodeType type;
-	String masterId;
+	@Nullable NodeType type;
+	@Nullable String masterId;
 
 	/**
 	 * Creates a new {@link RedisNode} with the given {@code host}, {@code port}.

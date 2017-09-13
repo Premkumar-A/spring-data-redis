@@ -44,6 +44,7 @@ import org.springframework.data.redis.connection.Subscription;
 import org.springframework.data.redis.connection.util.ByteArrayWrapper;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.lang.Nullable;
 import org.springframework.scheduling.SchedulingAwareRunnable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
@@ -92,15 +93,15 @@ public class RedisMessageListenerContainer implements InitializingBean, Disposab
 
 	private long initWait = TimeUnit.SECONDS.toMillis(5);
 
-	private Executor subscriptionExecutor;
+	private @Nullable Executor subscriptionExecutor;
 
-	private Executor taskExecutor;
+	private @Nullable Executor taskExecutor;
 
-	private RedisConnectionFactory connectionFactory;
+	private @Nullable RedisConnectionFactory connectionFactory;
 
-	private String beanName;
+	private @Nullable String beanName;
 
-	private ErrorHandler errorHandler;
+	private @Nullable ErrorHandler errorHandler;
 
 	private final Object monitor = new Object();
 	// whether the container is running (or not)
@@ -715,7 +716,7 @@ public class RedisMessageListenerContainer implements InitializingBean, Disposab
 			}
 		}
 
-		private volatile RedisConnection connection;
+		private volatile @Nullable RedisConnection connection;
 		private boolean subscriptionTaskRunning = false;
 		private final Object localMonitor = new Object();
 		private long subscriptionWait = TimeUnit.SECONDS.toMillis(5);

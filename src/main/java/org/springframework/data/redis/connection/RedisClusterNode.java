@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
@@ -32,12 +33,14 @@ import org.springframework.util.CollectionUtils;
  */
 public class RedisClusterNode extends RedisNode {
 
-	private SlotRange slotRange;
-	private LinkState linkState;
+	private @Nullable SlotRange slotRange;
+	private @Nullable LinkState linkState;
 	private Set<Flag> flags;
 
 	protected RedisClusterNode() {
+
 		super();
+		flags = Collections.emptySet();
 	}
 
 	/**
@@ -47,7 +50,7 @@ public class RedisClusterNode extends RedisNode {
 	 * @param port
 	 */
 	public RedisClusterNode(String host, int port) {
-		this(host, port, new SlotRange(Collections.<Integer> emptySet()));
+		this(host, port, new SlotRange(Collections.emptySet()));
 	}
 
 	/**
@@ -177,8 +180,7 @@ public class RedisClusterNode extends RedisNode {
 		}
 
 		public SlotRange(Collection<Integer> range) {
-			this.range = CollectionUtils.isEmpty(range) ? Collections.<Integer> emptySet()
-					: new LinkedHashSet<>(range);
+			this.range = CollectionUtils.isEmpty(range) ? Collections.<Integer> emptySet() : new LinkedHashSet<>(range);
 		}
 
 		@Override
@@ -251,9 +253,9 @@ public class RedisClusterNode extends RedisNode {
 	 */
 	public static class RedisClusterNodeBuilder extends RedisNodeBuilder {
 
-		Set<Flag> flags;
-		LinkState linkState;
-		SlotRange slotRange;
+		@Nullable Set<Flag> flags;
+		@Nullable LinkState linkState;
+		@Nullable SlotRange slotRange;
 
 		public RedisClusterNodeBuilder() {
 

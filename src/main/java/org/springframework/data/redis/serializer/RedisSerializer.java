@@ -15,6 +15,8 @@
  */
 package org.springframework.data.redis.serializer;
 
+import org.springframework.lang.Nullable;
+
 /**
  * Basic interface serialization and deserialization of Objects to byte arrays (binary data). It is recommended that
  * implementations are designed to handle null objects/empty arrays on serialization and deserialization side. Note that
@@ -31,7 +33,7 @@ public interface RedisSerializer<T> {
 	 * @param t object to serialize
 	 * @return the equivalent binary data
 	 */
-	byte[] serialize(T t) throws SerializationException;
+	byte[] serialize(@Nullable T t) throws SerializationException;
 
 	/**
 	 * Deserialize an object from the given binary data.
@@ -39,5 +41,6 @@ public interface RedisSerializer<T> {
 	 * @param bytes object binary representation
 	 * @return the equivalent object instance
 	 */
+	@Nullable
 	T deserialize(byte[] bytes) throws SerializationException;
 }

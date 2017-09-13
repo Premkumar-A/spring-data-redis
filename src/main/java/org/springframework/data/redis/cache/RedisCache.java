@@ -26,6 +26,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.util.ByteUtils;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
@@ -129,7 +130,7 @@ public class RedisCache extends AbstractValueAdaptingCache {
 	 * @see org.springframework.cache.Cache#put(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void put(Object key, Object value) {
+	public void put(Object key, @Nullable Object value) {
 
 		Object cacheValue = preProcessCacheValue(value);
 
@@ -148,7 +149,7 @@ public class RedisCache extends AbstractValueAdaptingCache {
 	 * @see org.springframework.cache.Cache#putIfAbsent(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public ValueWrapper putIfAbsent(Object key, Object value) {
+	public ValueWrapper putIfAbsent(Object key, @Nullable Object value) {
 
 		Object cacheValue = preProcessCacheValue(value);
 

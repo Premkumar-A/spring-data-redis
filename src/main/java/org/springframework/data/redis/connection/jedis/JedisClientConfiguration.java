@@ -15,6 +15,7 @@
  */
 package org.springframework.data.redis.connection.jedis;
 
+import org.springframework.lang.Nullable;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Protocol;
 
@@ -263,12 +264,12 @@ public interface JedisClientConfiguration {
 			JedisPoolingClientConfigurationBuilder, JedisSslClientConfigurationBuilder {
 
 		private boolean useSsl;
-		private SSLSocketFactory sslSocketFactory;
-		private SSLParameters sslParameters;
-		private HostnameVerifier hostnameVerifier;
+		private @Nullable SSLSocketFactory sslSocketFactory;
+		private @Nullable SSLParameters sslParameters;
+		private @Nullable HostnameVerifier hostnameVerifier;
 		private boolean usePooling;
 		private GenericObjectPoolConfig poolConfig = new JedisPoolConfig();
-		private String clientName;
+		private @Nullable String clientName;
 		private Duration readTimeout = Duration.ofMillis(Protocol.DEFAULT_TIMEOUT);
 		private Duration connectTimeout = Duration.ofMillis(Protocol.DEFAULT_TIMEOUT);
 

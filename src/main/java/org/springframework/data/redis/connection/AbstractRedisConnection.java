@@ -22,6 +22,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.data.redis.RedisSystemException;
+import org.springframework.lang.Nullable;
 
 /**
  * @author Christoph Strobl
@@ -30,7 +31,7 @@ import org.springframework.data.redis.RedisSystemException;
  */
 public abstract class AbstractRedisConnection implements DefaultedRedisConnection {
 
-	private RedisSentinelConfiguration sentinelConfiguration;
+	private @Nullable RedisSentinelConfiguration sentinelConfiguration;
 	private ConcurrentHashMap<RedisNode, RedisSentinelConnection> connectionCache = new ConcurrentHashMap<>();
 
 	/*

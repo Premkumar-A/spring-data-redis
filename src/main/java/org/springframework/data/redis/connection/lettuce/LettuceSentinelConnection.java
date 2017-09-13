@@ -44,7 +44,7 @@ public class LettuceSentinelConnection implements RedisSentinelConnection {
 			LettuceConverters.exceptionConverter());
 
 	private final LettuceConnectionProvider provider;
-	private StatefulRedisSentinelConnection<String, String> connection;
+	private StatefulRedisSentinelConnection<String, String> connection; // no that should not be null
 
 	/**
 	 * Creates a {@link LettuceSentinelConnection} with a dedicated client for a supplied {@link RedisNode}.
@@ -232,6 +232,8 @@ public class LettuceSentinelConnection implements RedisSentinelConnection {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void init() {
+
+		// TODO maybe move this to an instance initializer block.
 
 		if (connection == null) {
 			connection = provider.getConnection(StatefulRedisSentinelConnection.class);

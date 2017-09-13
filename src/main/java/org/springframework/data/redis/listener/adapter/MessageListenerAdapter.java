@@ -31,6 +31,7 @@ import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
@@ -95,7 +96,7 @@ import org.springframework.util.StringUtils;
  */
 public class MessageListenerAdapter implements InitializingBean, MessageListener {
 
-
+    // TODO move this down.
 	private class MethodInvoker {
 
 		private final Object delegate;
@@ -161,15 +162,15 @@ public class MessageListenerAdapter implements InitializingBean, MessageListener
 	/** Logger available to subclasses */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	private volatile Object delegate;
+	private volatile @Nullable Object delegate;
 
-	private volatile MethodInvoker invoker;
+	private volatile @Nullable MethodInvoker invoker;
 
 	private String defaultListenerMethod = ORIGINAL_DEFAULT_LISTENER_METHOD;
 
-	private RedisSerializer<?> serializer;
+	private @Nullable RedisSerializer<?> serializer;
 
-	private RedisSerializer<String> stringSerializer;
+	private @Nullable RedisSerializer<String> stringSerializer;
 
 	/**
 	 * Create a new {@link MessageListenerAdapter} with default settings.

@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -31,7 +32,7 @@ public class RedisAccessor implements InitializingBean {
 	/** Logger available to subclasses */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	private RedisConnectionFactory connectionFactory;
+	private @Nullable RedisConnectionFactory connectionFactory;
 
 	public void afterPropertiesSet() {
 		Assert.notNull(getConnectionFactory(), "RedisConnectionFactory is required");
