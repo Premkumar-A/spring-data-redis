@@ -3242,8 +3242,7 @@ public class DefaultStringRedisConnection implements StringRedisConnection, Deco
 	@Override
 	public Cursor<Entry<String, String>> hScan(String key, ScanOptions options) {
 
-		return new ConvertingCursor<>(
-				this.delegate.hScan(this.serialize(key), options),
+		return new ConvertingCursor<>(this.delegate.hScan(this.serialize(key), options),
 				source -> new Entry<String, String>() {
 
 					@Override
@@ -3278,8 +3277,7 @@ public class DefaultStringRedisConnection implements StringRedisConnection, Deco
 	 */
 	@Override
 	public Cursor<StringTuple> zScan(String key, ScanOptions options) {
-		return new ConvertingCursor<>(delegate.zScan(this.serialize(key), options),
-				new TupleConverter());
+		return new ConvertingCursor<>(delegate.zScan(this.serialize(key), options), new TupleConverter());
 	}
 
 	/*
@@ -3467,7 +3465,9 @@ public class DefaultStringRedisConnection implements StringRedisConnection, Deco
 	private <T> T convertAndReturn(Object value, Converter converter) {
 
 		if (isFutureConversion()) {
+
 			addResultConverter(converter);
+			return null;
 		}
 
 		return ObjectUtils.nullSafeEquals(converter, identityConverter) ? (T) value : (T) converter.convert(value);
