@@ -15,7 +15,6 @@
  */
 package org.springframework.data.redis.connection.jedis;
 
-import org.springframework.lang.Nullable;
 import redis.clients.jedis.BinaryJedis;
 import redis.clients.jedis.BinaryJedisPubSub;
 import redis.clients.jedis.Builder;
@@ -46,6 +45,7 @@ import org.springframework.data.redis.FallbackExceptionTranslationStrategy;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.data.redis.connection.*;
 import org.springframework.data.redis.connection.convert.TransactionResultConverter;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
@@ -107,8 +107,8 @@ public class JedisConnection extends AbstractRedisConnection {
 	 * flag indicating whether the connection needs to be dropped or not
 	 */
 	private boolean broken = false;
-	private volatile @Nullable  JedisSubscription subscription;
-	private volatile @Nullable  Pipeline pipeline;
+	private volatile @Nullable JedisSubscription subscription;
+	private volatile @Nullable Pipeline pipeline;
 	private final int dbIndex;
 	private final String clientName;
 	private boolean convertPipelineAndTxResults = true;
@@ -126,10 +126,13 @@ public class JedisConnection extends AbstractRedisConnection {
 
 		@SuppressWarnings("unchecked")
 		public Object get() {
-			if (convertPipelineAndTxResults && converter != null) {
-				return converter.convert(resultHolder.get());
+
+			Object raw = resultHolder.get();
+			if (!convertPipelineAndTxResults || raw == null) {
+				return raw;
 			}
-			return resultHolder.get();
+
+			return converter != null ? converter.convert(raw) : raw;
 		}
 	}
 

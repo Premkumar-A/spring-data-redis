@@ -29,6 +29,7 @@ import org.springframework.data.redis.connection.FutureResult;
  * objects returned in the list as well, using the supplied Exception {@link Converter}
  *
  * @author Jennifer Hickey
+ * @author Christoph Strobl
  * @param <T> The type of {@link FutureResult} of the individual tx operations
  */
 public class TransactionResultConverter<T> implements Converter<List<Object>, List<Object>> {
@@ -39,19 +40,22 @@ public class TransactionResultConverter<T> implements Converter<List<Object>, Li
 
 	public TransactionResultConverter(Queue<FutureResult<T>> txResults,
 			Converter<Exception, DataAccessException> exceptionConverter) {
+
 		this.txResults = txResults;
 		this.exceptionConverter = exceptionConverter;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.springframework.core.convert.converter.Converter#convert(Object)
+	 */
+	@Override
 	public List<Object> convert(List<Object> execResults) {
 
-		if (execResults == null) {
-			return null;
-		}
-
 		if (execResults.size() != txResults.size()) {
-			throw new IllegalArgumentException("Incorrect number of transaction results. Expected: " + txResults.size()
-					+ " Actual: " + execResults.size());
+
+			throw new IllegalArgumentException(
+					"Incorrect number of transaction results. Expected: " + txResults.size() + " Actual: " + execResults.size());
 		}
 
 		List<Object> convertedResults = new ArrayList<>();
