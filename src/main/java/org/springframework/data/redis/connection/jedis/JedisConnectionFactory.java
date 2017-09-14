@@ -610,6 +610,7 @@ public class JedisConnectionFactory implements InitializingBean, DisposableBean,
 	 * @deprecated since 2.0.
 	 */
 	@Deprecated
+	@Nullable
 	public JedisShardInfo getShardInfo() {
 		return shardInfo;
 	}

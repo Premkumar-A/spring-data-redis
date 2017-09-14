@@ -82,6 +82,7 @@ public class RedisData {
 	/**
 	 * @return
 	 */
+	@Nullable
 	public String getId() {
 		return this.id;
 	}
@@ -91,6 +92,7 @@ public class RedisData {
 	 *
 	 * @return {@literal null} if not set.
 	 */
+	@Nullable
 	public Long getTimeToLive() {
 		return timeToLive;
 	}
@@ -123,6 +125,7 @@ public class RedisData {
 	/**
 	 * @return
 	 */
+	@Nullable
 	public String getKeyspace() {
 		return keyspace;
 	}

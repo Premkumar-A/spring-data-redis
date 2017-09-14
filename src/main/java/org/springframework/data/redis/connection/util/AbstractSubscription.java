@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.connection.RedisInvalidSubscriptionException;
 import org.springframework.data.redis.connection.Subscription;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
@@ -51,7 +52,8 @@ public abstract class AbstractSubscription implements Subscription {
 	 * @param channels
 	 * @param patterns
 	 */
-	protected AbstractSubscription(MessageListener listener, byte[][] channels, byte[][] patterns) {
+	protected AbstractSubscription(MessageListener listener, @Nullable byte[][] channels, @Nullable byte[][] patterns) {
+
 		Assert.notNull(listener, "MessageListener must not be null!");
 		this.listener = listener;
 

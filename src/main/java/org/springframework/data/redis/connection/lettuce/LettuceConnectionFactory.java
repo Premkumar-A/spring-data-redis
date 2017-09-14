@@ -88,7 +88,7 @@ public class LettuceConnectionFactory
 	private boolean validateConnection = false;
 	private boolean shareNativeConnection = true;
 	private @Nullable StatefulRedisConnection<byte[], byte[]> connection;
-	private LettucePool pool;
+	private @Nullable LettucePool pool;
 	/** Synchronization monitor for the shared Connection */
 	private final Object connectionMonitor = new Object();
 	private boolean convertPipelineAndTxResults = true;
@@ -698,6 +698,7 @@ public class LettuceConnectionFactory
 	 * @return the {@link RedisStandaloneConfiguration}, may be {@literal null}.
 	 * @since 2.0
 	 */
+	@Nullable
 	public RedisSentinelConfiguration getSentinelConfiguration() {
 		return sentinelConfiguration;
 	}
@@ -706,6 +707,7 @@ public class LettuceConnectionFactory
 	 * @return the {@link RedisClusterConfiguration}, may be {@literal null}.
 	 * @since 2.0
 	 */
+	@Nullable
 	public RedisClusterConfiguration getClusterConfiguration() {
 		return clusterConfiguration;
 	}
@@ -894,7 +896,7 @@ public class LettuceConnectionFactory
 		private boolean useSsl;
 		private boolean verifyPeer = true;
 		private boolean startTls;
-		private ClientResources clientResources;
+		private @Nullable ClientResources clientResources;
 		private Duration timeout = Duration.ofSeconds(RedisURI.DEFAULT_TIMEOUT);
 		private Duration shutdownTimeout = Duration.ofMillis(100);
 

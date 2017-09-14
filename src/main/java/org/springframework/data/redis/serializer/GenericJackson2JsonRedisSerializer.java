@@ -18,6 +18,7 @@ package org.springframework.data.redis.serializer;
 import java.io.IOException;
 
 import org.springframework.cache.support.NullValue;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
@@ -87,7 +88,7 @@ public class GenericJackson2JsonRedisSerializer implements RedisSerializer<Objec
 	 * @see org.springframework.data.redis.serializer.RedisSerializer#serialize(java.lang.Object)
 	 */
 	@Override
-	public byte[] serialize(Object source) throws SerializationException {
+	public byte[] serialize(@Nullable Object source) throws SerializationException {
 
 		if (source == null) {
 			return SerializationUtils.EMPTY_ARRAY;

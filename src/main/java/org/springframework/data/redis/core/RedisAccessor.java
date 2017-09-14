@@ -35,14 +35,15 @@ public class RedisAccessor implements InitializingBean {
 	private @Nullable RedisConnectionFactory connectionFactory;
 
 	public void afterPropertiesSet() {
-		Assert.notNull(getConnectionFactory(), "RedisConnectionFactory is required");
+		Assert.state(getConnectionFactory() != null, "RedisConnectionFactory is required");
 	}
 
 	/**
 	 * Returns the connectionFactory.
 	 * 
-	 * @return Returns the connectionFactory
+	 * @return Returns the connectionFactory. Can be {@literal null}
 	 */
+	@Nullable
 	public RedisConnectionFactory getConnectionFactory() {
 		return connectionFactory;
 	}

@@ -80,7 +80,8 @@ public class OxmSerializer implements InitializingBean, RedisSerializer<Object> 
 		}
 	}
 
-	public byte[] serialize(Object t) throws SerializationException {
+	@Override
+	public byte[] serialize(@Nullable Object t) throws SerializationException {
 		if (t == null) {
 			return SerializationUtils.EMPTY_ARRAY;
 		}

@@ -436,6 +436,7 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 	 *
 	 * @return template default serializer
 	 */
+	@Nullable
 	public RedisSerializer<?> getDefaultSerializer() {
 		return defaultSerializer;
 	}

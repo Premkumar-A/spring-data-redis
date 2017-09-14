@@ -298,6 +298,7 @@ public class RedisMessageListenerContainer implements InitializingBean, Disposab
 	 *
 	 * @return Returns the connectionFactory
 	 */
+	@Nullable
 	public RedisConnectionFactory getConnectionFactory() {
 		return connectionFactory;
 	}
@@ -306,6 +307,8 @@ public class RedisMessageListenerContainer implements InitializingBean, Disposab
 	 * @param connectionFactory The connectionFactory to set.
 	 */
 	public void setConnectionFactory(RedisConnectionFactory connectionFactory) {
+		
+		Assert.notNull(connectionFactory, "ConnectionFactory must not be null!");
 		this.connectionFactory = connectionFactory;
 	}
 
@@ -941,7 +944,8 @@ public class RedisMessageListenerContainer implements InitializingBean, Disposab
 	 */
 	private class DispatchMessageListener implements MessageListener {
 
-		public void onMessage(Message message, byte[] pattern) {
+		@Override
+		public void onMessage(Message message, @Nullable byte[] pattern) {
 			Collection<MessageListener> listeners = null;
 
 			// if it's a pattern, disregard channel

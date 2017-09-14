@@ -202,6 +202,7 @@ public class DefaultLettucePool implements LettucePool, InitializingBean {
 	/**
 	 * @return The Redis client
 	 */
+	@Override
 	public RedisClient getClient() {
 		return client;
 	}
@@ -244,6 +245,7 @@ public class DefaultLettucePool implements LettucePool, InitializingBean {
 	 *
 	 * @return password for authentication
 	 */
+	@Nullable
 	public String getPassword() {
 		return password;
 	}
@@ -317,6 +319,7 @@ public class DefaultLettucePool implements LettucePool, InitializingBean {
 	 * @return {@literal null} if not set.
 	 * @since 1.7
 	 */
+	@Nullable
 	public ClientResources getClientResources() {
 		return clientResources;
 	}

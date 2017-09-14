@@ -598,10 +598,12 @@ public class JedisConnection extends AbstractRedisConnection {
 		}
 	}
 
+	@Nullable
 	public Pipeline getPipeline() {
 		return pipeline;
 	}
 
+	@Nullable
 	public Transaction getTransaction() {
 		return transaction;
 	}

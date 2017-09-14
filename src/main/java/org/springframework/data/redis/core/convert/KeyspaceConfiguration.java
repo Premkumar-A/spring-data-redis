@@ -184,6 +184,7 @@ public class KeyspaceConfiguration {
 			this.timeToLive = timeToLive;
 		}
 
+		@Nullable
 		public Long getTimeToLive() {
 			return timeToLive;
 		}

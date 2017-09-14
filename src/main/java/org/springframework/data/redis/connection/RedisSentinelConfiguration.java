@@ -165,6 +165,7 @@ public class RedisSentinelConfiguration {
 	 *
 	 * @return get the master node.
 	 */
+	@Nullable
 	public NamedNode getMaster() {
 		return master;
 	}

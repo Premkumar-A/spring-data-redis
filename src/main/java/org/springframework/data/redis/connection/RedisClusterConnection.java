@@ -17,6 +17,8 @@ package org.springframework.data.redis.connection;
 
 import java.util.Set;
 
+import org.springframework.lang.Nullable;
+
 /**
  * {@link RedisClusterConnection} allows sending commands to dedicated nodes within the cluster. A
  * {@link RedisClusterNode} can be obtained from {@link #clusterGetNodes()} or it can be constructed using either
@@ -49,6 +51,7 @@ public interface RedisClusterConnection extends RedisConnection, RedisClusterCom
 	 * @return
 	 * @see RedisKeyCommands#randomKey()
 	 */
+	@Nullable
 	byte[] randomKey(RedisClusterNode node);
 
 	/**

@@ -96,7 +96,7 @@ import org.springframework.util.StringUtils;
  */
 public class MessageListenerAdapter implements InitializingBean, MessageListener {
 
-    // TODO move this down.
+	// TODO move this down.
 	private class MethodInvoker {
 
 		private final Object delegate;
@@ -130,9 +130,9 @@ public class MessageListenerAdapter implements InitializingBean, MessageListener
 
 				Class<?>[] types = m.getParameterTypes();
 				Object[] args = //
-				types.length == 2 //
-						&& types[0].isInstance(arguments[0]) //
-						&& types[1].isInstance(arguments[1]) ? arguments : message;
+						types.length == 2 //
+								&& types[0].isInstance(arguments[0]) //
+								&& types[1].isInstance(arguments[1]) ? arguments : message;
 
 				if (!types[0].isInstance(args[0])) {
 					continue;
@@ -221,6 +221,7 @@ public class MessageListenerAdapter implements InitializingBean, MessageListener
 	 *
 	 * @return message listening delegation
 	 */
+	@Nullable
 	public Object getDelegate() {
 		return this.delegate;
 	}
@@ -285,8 +286,8 @@ public class MessageListenerAdapter implements InitializingBean, MessageListener
 	 * @param message the incoming Redis message
 	 * @see #handleListenerException
 	 */
-
-	public void onMessage(Message message, byte[] pattern) {
+	@Override
+	public void onMessage(Message message, @Nullable byte[] pattern) {
 		try {
 			// Check whether the delegate is a MessageListener impl itself.
 			// In that case, the adapter will simply act as a pass-through.

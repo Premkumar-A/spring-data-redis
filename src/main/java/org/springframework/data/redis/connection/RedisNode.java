@@ -50,10 +50,12 @@ public class RedisNode implements NamedNode {
 
 	protected RedisNode() {}
 
+	@Nullable
 	public String getHost() {
 		return host;
 	}
 
+	@Nullable
 	public Integer getPort() {
 		return port;
 	}
@@ -75,6 +77,7 @@ public class RedisNode implements NamedNode {
 	 * @return
 	 * @since 1.7
 	 */
+	@Nullable
 	public String getMasterId() {
 		return masterId;
 	}
@@ -83,6 +86,7 @@ public class RedisNode implements NamedNode {
 	 * @return
 	 * @since 1.7
 	 */
+	@Nullable
 	public String getId() {
 		return id;
 	}
@@ -100,6 +104,7 @@ public class RedisNode implements NamedNode {
 	 * @return
 	 * @since 1.7
 	 */
+	@Nullable
 	public NodeType getType() {
 		return type;
 	}

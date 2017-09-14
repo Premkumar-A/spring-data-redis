@@ -43,10 +43,12 @@ public class ScanOptions {
 		return new ScanOptionsBuilder();
 	}
 
+	@Nullable
 	public Long getCount() {
 		return count;
 	}
 
+	@Nullable
 	public String getPattern() {
 		return pattern;
 	}

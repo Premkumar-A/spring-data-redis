@@ -24,6 +24,7 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -61,6 +62,7 @@ public class GenericToStringSerializer<T> implements RedisSerializer<T>, BeanFac
 		converter = new Converter(typeConverter);
 	}
 
+	@Override
 	public T deserialize(byte[] bytes) {
 		if (bytes == null) {
 			return null;
@@ -70,7 +72,8 @@ public class GenericToStringSerializer<T> implements RedisSerializer<T>, BeanFac
 		return converter.convert(string, type);
 	}
 
-	public byte[] serialize(T object) {
+	@Override
+	public byte[] serialize(@Nullable T object) {
 		if (object == null) {
 			return null;
 		}
@@ -83,7 +86,8 @@ public class GenericToStringSerializer<T> implements RedisSerializer<T>, BeanFac
 			ConfigurableBeanFactory cFB = (ConfigurableBeanFactory) beanFactory;
 			ConversionService conversionService = cFB.getConversionService();
 
-			converter = (conversionService != null ? new Converter(conversionService) : new Converter(cFB.getTypeConverter()));
+			converter = (conversionService != null ? new Converter(conversionService)
+					: new Converter(cFB.getTypeConverter()));
 		}
 	}
 

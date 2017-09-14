@@ -89,6 +89,12 @@ public class RedisClusterNode extends RedisNode {
 		this.slotRange = slotRange != null ? slotRange : new SlotRange(Collections.<Integer> emptySet());
 	}
 
+	{
+		if (flags == null) {
+			flags = Collections.emptySet();
+		}
+	}
+
 	/**
 	 * Get the served {@link SlotRange}.
 	 *

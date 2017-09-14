@@ -16,6 +16,7 @@
 package org.springframework.data.redis.connection;
 
 import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 
 /**
  * Default message implementation.
@@ -31,18 +32,25 @@ public class DefaultMessage implements Message {
 
 	public DefaultMessage(byte[] channel, byte[] body) {
 
+		Assert.notNull(channel, "Channel must not be null!");
+		Assert.notNull(body, "Body must not be null!");
+
 		this.body = body;
 		this.channel = channel;
 	}
 
+	/**
+	 * @return
+	 */
 	public byte[] getChannel() {
-		return (channel != null ? channel.clone() : null);
+		return channel.clone();
 	}
 
 	public byte[] getBody() {
-		return (body != null ? body.clone() : null);
+		return body.clone();
 	}
 
+	@Override
 	public String toString() {
 
 		if (toString == null) {

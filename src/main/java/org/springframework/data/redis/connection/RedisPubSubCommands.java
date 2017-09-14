@@ -15,11 +15,14 @@
  */
 package org.springframework.data.redis.connection;
 
+import org.springframework.lang.Nullable;
+
 /**
  * PubSub-specific Redis commands.
  * 
  * @author Costin Leau
  * @author Mark Paluch
+ * @author Christoph Strobl
  */
 public interface RedisPubSubCommands {
 
@@ -35,14 +38,15 @@ public interface RedisPubSubCommands {
 	 * 
 	 * @return the current subscription, null if none is available
 	 */
+	@Nullable
 	Subscription getSubscription();
 
 	/**
 	 * Publishes the given message to the given channel.
 	 * 
-	 * @param channel the channel to publish to, must not be {@literal null}.
-	 * @param message message to publish
-	 * @return the number of clients that received the message
+	 * @param channel the channel to publish to. Must not be {@literal null}.
+	 * @param message message to publish. Must not be {@literal null}.
+	 * @return the number of clients that received the message.
 	 * @see <a href="http://redis.io/commands/publish">Redis Documentation: PUBLISH</a>
 	 */
 	Long publish(byte[] channel, byte[] message);

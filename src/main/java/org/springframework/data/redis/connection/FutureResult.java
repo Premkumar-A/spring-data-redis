@@ -62,6 +62,7 @@ abstract public class FutureResult<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
+	@Nullable
 	public Converter getConverter() {
 		return converter;
 	}
