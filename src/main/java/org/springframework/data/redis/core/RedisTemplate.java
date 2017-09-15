@@ -166,6 +166,7 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 	 * @see org.springframework.data.redis.core.RedisOperations#execute(org.springframework.data.redis.core.RedisCallback)
 	 */
 	@Override
+	@Nullable
 	public <T> T execute(RedisCallback<T> action) {
 		return execute(action, isExposeConnection());
 	}
@@ -178,6 +179,7 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 	 * @param exposeConnection whether to enforce exposure of the native Redis Connection to callback code
 	 * @return object returned by the action
 	 */
+	@Nullable
 	public <T> T execute(RedisCallback<T> action, boolean exposeConnection) {
 		return execute(action, exposeConnection, false);
 	}
@@ -192,6 +194,7 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 	 * @param pipeline whether to pipeline or not the connection for the execution
 	 * @return object returned by the action
 	 */
+	@Nullable
 	public <T> T execute(RedisCallback<T> action, boolean exposeConnection, boolean pipeline) {
 
 		Assert.isTrue(initialized, "template not initialized; call afterPropertiesSet() before using it");
@@ -686,7 +689,9 @@ public class RedisTemplate<K, V> extends RedisAccessor implements RedisOperation
 	}
 
 	protected List<Object> execRaw() {
-		return execute(RedisTxCommands::exec);
+
+		List<Object> raw = execute(RedisTxCommands::exec);
+		return raw == null ? Collections.emptyList() : raw;
 	}
 
 	/*

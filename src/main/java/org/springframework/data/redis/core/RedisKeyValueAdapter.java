@@ -751,7 +751,7 @@ public class RedisKeyValueAdapter extends AbstractKeyValueAdapter
 		 * @see org.springframework.data.redis.listener.KeyspaceEventMessageListener#onMessage(org.springframework.data.redis.connection.Message, byte[])
 		 */
 		@Override
-		public void onMessage(Message message, byte[] pattern) {
+		public void onMessage(Message message, @Nullable byte[] pattern) {
 
 			if (!isKeyExpirationMessage(message)) {
 				return;

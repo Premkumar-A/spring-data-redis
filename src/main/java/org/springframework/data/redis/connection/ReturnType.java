@@ -55,7 +55,7 @@ public enum ReturnType {
 
 	/**
 	 * @param javaType can be {@literal null} which translates to {@link ReturnType#STATUS}.
-	 * @return
+	 * @return never {@literal null}.
 	 */
 	public static ReturnType fromJavaType(@Nullable Class<?> javaType) {
 

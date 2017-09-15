@@ -203,7 +203,8 @@ public class RedisCache extends AbstractValueAdaptingCache {
 	 * @param value can be {@literal null}.
 	 * @return preprocessed value. Can be {@literal null}.
 	 */
-	protected Object preProcessCacheValue(Object value) {
+	@Nullable
+	protected Object preProcessCacheValue(@Nullable Object value) {
 
 		if (value != null) {
 			return value;
@@ -243,6 +244,7 @@ public class RedisCache extends AbstractValueAdaptingCache {
 	 * @param value must not be {@literal null}.
 	 * @return can be {@literal null}.
 	 */
+	@Nullable
 	protected Object deserializeCacheValue(byte[] value) {
 
 		if (isAllowNullValues() && ObjectUtils.nullSafeEquals(value, BINARY_NULL_VALUE)) {

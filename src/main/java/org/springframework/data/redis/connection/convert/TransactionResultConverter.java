@@ -22,6 +22,7 @@ import java.util.Queue;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.RedisSystemException;
 import org.springframework.data.redis.connection.FutureResult;
 
 /**
@@ -63,7 +64,11 @@ public class TransactionResultConverter<T> implements Converter<List<Object>, Li
 		for (Object result : execResults) {
 			FutureResult<T> futureResult = txResults.remove();
 			if (result instanceof Exception) {
-				throw exceptionConverter.convert((Exception) result);
+
+				Exception source = (Exception) result;
+				DataAccessException convertedException = exceptionConverter.convert(source);
+				throw convertedException != null ? convertedException
+						: new RedisSystemException("Error reading future result.", source);
 			}
 			if (!(futureResult.isStatus())) {
 				convertedResults.add(futureResult.convert(result));

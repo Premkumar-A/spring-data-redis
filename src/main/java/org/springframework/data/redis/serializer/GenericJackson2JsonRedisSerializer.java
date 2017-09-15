@@ -106,7 +106,7 @@ public class GenericJackson2JsonRedisSerializer implements RedisSerializer<Objec
 	 * @see org.springframework.data.redis.serializer.RedisSerializer#deserialize(byte[])
 	 */
 	@Override
-	public Object deserialize(byte[] source) throws SerializationException {
+	public Object deserialize(@Nullable byte[] source) throws SerializationException {
 		return deserialize(source, Object.class);
 	}
 
@@ -116,7 +116,7 @@ public class GenericJackson2JsonRedisSerializer implements RedisSerializer<Objec
 	 * @return {@literal null} for empty source.
 	 * @throws SerializationException
 	 */
-	public <T> T deserialize(byte[] source, Class<T> type) throws SerializationException {
+	public <T> T deserialize(@Nullable byte[] source, Class<T> type) throws SerializationException {
 
 		Assert.notNull(type,
 				"Deserialization type must not be null! Pleaes provide Object.class to make use of Jackson2 default typing.");

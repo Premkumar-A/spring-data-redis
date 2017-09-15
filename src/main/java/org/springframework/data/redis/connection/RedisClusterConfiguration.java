@@ -214,7 +214,6 @@ public class RedisClusterConfiguration {
 	/**
 	 * @param clusterHostAndPorts must not be {@literal null} or empty.
 	 * @param redirects the max number of redirects to follow.
-	 * @param password can be {@literal null} or empty.
 	 * @return cluster config map with properties.
 	 */
 	private static Map<String, Object> asMap(Collection<String> clusterHostAndPorts, int redirects) {

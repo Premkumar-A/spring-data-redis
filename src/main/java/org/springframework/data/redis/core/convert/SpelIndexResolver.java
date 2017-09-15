@@ -80,7 +80,7 @@ public class SpelIndexResolver implements IndexResolver {
 	/* (non-Javadoc)
 	 * @see org.springframework.data.redis.core.convert.IndexResolver#resolveIndexesFor(org.springframework.data.util.TypeInformation, java.lang.Object)
 	 */
-	public Set<IndexedData> resolveIndexesFor(TypeInformation<?> typeInformation, Object value) {
+	public Set<IndexedData> resolveIndexesFor(TypeInformation<?> typeInformation, @Nullable Object value) {
 
 		if (value == null) {
 			return Collections.emptySet();

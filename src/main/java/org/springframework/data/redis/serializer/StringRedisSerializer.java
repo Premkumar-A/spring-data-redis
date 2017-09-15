@@ -44,7 +44,7 @@ public class StringRedisSerializer implements RedisSerializer<String> {
 		this.charset = charset;
 	}
 
-	public String deserialize(byte[] bytes) {
+	public String deserialize(@Nullable byte[] bytes) {
 		return (bytes == null ? null : new String(bytes, charset));
 	}
 

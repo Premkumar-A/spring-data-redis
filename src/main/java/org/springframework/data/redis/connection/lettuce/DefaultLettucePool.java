@@ -203,6 +203,7 @@ public class DefaultLettucePool implements LettucePool, InitializingBean {
 	 * @return The Redis client
 	 */
 	@Override
+	@Nullable
 	public RedisClient getClient() {
 		return client;
 	}

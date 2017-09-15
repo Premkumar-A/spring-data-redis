@@ -23,6 +23,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.data.redis.RedisSystemException;
 import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 
 /**
  * @author Christoph Strobl
@@ -63,6 +64,8 @@ public abstract class AbstractRedisConnection implements DefaultedRedisConnectio
 	}
 
 	private RedisNode selectActiveSentinel() {
+
+		Assert.state(hasRedisSentinelConfigured(), "Sentinel configuration missing!");
 
 		for (RedisNode node : this.sentinelConfiguration.getSentinels()) {
 			if (isActive(node)) {

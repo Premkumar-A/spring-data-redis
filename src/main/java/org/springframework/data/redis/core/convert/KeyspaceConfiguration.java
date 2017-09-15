@@ -193,6 +193,7 @@ public class KeyspaceConfiguration {
 			timeToLivePropertyName = propertyName;
 		}
 
+		@Nullable
 		public String getTimeToLivePropertyName() {
 			return timeToLivePropertyName;
 		}

@@ -163,7 +163,7 @@ public class RedisSentinelConfiguration {
 	/**
 	 * Get the {@literal Sentinel} master node.
 	 *
-	 * @return get the master node.
+	 * @return get the master node or {@literal null} if not set.
 	 */
 	@Nullable
 	public NamedNode getMaster() {

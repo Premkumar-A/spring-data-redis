@@ -50,11 +50,17 @@ public class RedisNode implements NamedNode {
 
 	protected RedisNode() {}
 
+	/**
+	 * @return can be {@literal null}.
+	 */
 	@Nullable
 	public String getHost() {
 		return host;
 	}
 
+	/**
+	 * @return can be {@literal null}.
+	 */
 	@Nullable
 	public Integer getPort() {
 		return port;
@@ -65,6 +71,7 @@ public class RedisNode implements NamedNode {
 	}
 
 	@Override
+	@Nullable
 	public String getName() {
 		return this.name;
 	}
@@ -74,7 +81,7 @@ public class RedisNode implements NamedNode {
 	}
 
 	/**
-	 * @return
+	 * @return can be {@literal null}.
 	 * @since 1.7
 	 */
 	@Nullable
@@ -83,7 +90,7 @@ public class RedisNode implements NamedNode {
 	}
 
 	/**
-	 * @return
+	 * @return can be {@literal null}.
 	 * @since 1.7
 	 */
 	@Nullable
@@ -92,7 +99,6 @@ public class RedisNode implements NamedNode {
 	}
 
 	/**
-	 *
 	 * @param id
 	 * @since 1.7
 	 */
@@ -101,7 +107,7 @@ public class RedisNode implements NamedNode {
 	}
 
 	/**
-	 * @return
+	 * @return can be {@literal null}.
 	 * @since 1.7
 	 */
 	@Nullable

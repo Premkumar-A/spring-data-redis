@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 the original author or authors.
+ * Copyright 2013-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@ abstract public class FutureResult<T> {
 
 	protected boolean status = false;
 
-	@SuppressWarnings("rawtypes") protected @Nullable Converter converter;
+	@SuppressWarnings("rawtypes") //
+	protected @Nullable Converter converter;
 
 	public FutureResult(T resultHolder) {
 		this.resultHolder = resultHolder;
@@ -50,15 +51,18 @@ abstract public class FutureResult<T> {
 	/**
 	 * Converts the given result if a converter is specified, else returns the result
 	 * 
-	 * @param result The result to convert
-	 * @return The converted result
+	 * @param result The result to convert. Can be {@literal null}.
+	 * @return The converted result or {@literal null}.
 	 */
 	@SuppressWarnings("unchecked")
-	public Object convert(Object result) {
-		if (converter != null) {
-			return converter.convert(result);
+	@Nullable
+	public Object convert(@Nullable Object result) {
+
+		if (result == null) {
+			return null;
 		}
-		return result;
+
+		return (converter != null) ? converter.convert(result) : result;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -84,7 +88,8 @@ abstract public class FutureResult<T> {
 	}
 
 	/**
-	 * @return The result of the operation
+	 * @return The result of the operation. Can be {@literal null}.
 	 */
+	@Nullable
 	abstract public Object get();
 }

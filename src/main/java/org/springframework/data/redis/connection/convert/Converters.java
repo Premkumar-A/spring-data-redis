@@ -96,11 +96,13 @@ abstract public class Converters {
 				String[] args = source.split(" ");
 				String[] hostAndPort = StringUtils.split(args[HOST_PORT_INDEX], ":");
 
+				Assert.notNull(hostAndPort, "CusterNode information does not define host and port!");
+
 				SlotRange range = parseSlotRange(args);
 				Set<Flag> flags = parseFlags(args);
 
 				String portPart = hostAndPort[1];
-				if (portPart.contains("@")) {
+				if (portPart != null && portPart.contains("@")) {
 					portPart = portPart.substring(0, portPart.indexOf('@'));
 				}
 
@@ -212,7 +214,9 @@ abstract public class Converters {
 	}
 
 	public static Properties toProperties(Map<?, ?> source) {
-		return MAP_TO_PROPERTIES.convert(source);
+
+		Properties properties = MAP_TO_PROPERTIES.convert(source);
+		return properties != null ? properties : new Properties();
 	}
 
 	public static Boolean toBoolean(Long source) {

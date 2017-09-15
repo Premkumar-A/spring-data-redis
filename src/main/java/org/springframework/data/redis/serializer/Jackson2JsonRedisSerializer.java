@@ -63,7 +63,7 @@ public class Jackson2JsonRedisSerializer<T> implements RedisSerializer<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public T deserialize(byte[] bytes) throws SerializationException {
+	public T deserialize(@Nullable byte[] bytes) throws SerializationException {
 
 		if (SerializationUtils.isEmpty(bytes)) {
 			return null;

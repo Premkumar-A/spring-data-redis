@@ -26,9 +26,10 @@ import org.springframework.lang.Nullable;
  */
 @SuppressWarnings("serial")
 public class PoolException extends NestedRuntimeException {
+
 	/**
 	 * Constructs a new <code>PoolException</code> instance.
-	 * 
+	 *
 	 * @param msg
 	 * @param cause
 	 */
@@ -38,7 +39,7 @@ public class PoolException extends NestedRuntimeException {
 
 	/**
 	 * Constructs a new <code>PoolException</code> instance.
-	 * 
+	 *
 	 * @param msg
 	 */
 	public PoolException(String msg) {

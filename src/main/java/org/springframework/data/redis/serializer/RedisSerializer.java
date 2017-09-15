@@ -24,23 +24,25 @@ import org.springframework.lang.Nullable;
  * 
  * @author Mark Pollack
  * @author Costin Leau
+ * @author Christoph Strobl
  */
 public interface RedisSerializer<T> {
 
 	/**
 	 * Serialize the given object to binary data.
 	 * 
-	 * @param t object to serialize
-	 * @return the equivalent binary data
+	 * @param t object to serialize. Can be {@literal null}.
+	 * @return the equivalent binary data. Can be {@literal null}.
 	 */
+	@Nullable
 	byte[] serialize(@Nullable T t) throws SerializationException;
 
 	/**
 	 * Deserialize an object from the given binary data.
 	 * 
-	 * @param bytes object binary representation
-	 * @return the equivalent object instance
+	 * @param bytes object binary representation. Can be {@literal null}.
+	 * @return the equivalent object instance. Can be {@literal null}.
 	 */
 	@Nullable
-	T deserialize(byte[] bytes) throws SerializationException;
+	T deserialize(@Nullable byte[] bytes) throws SerializationException;
 }

@@ -68,7 +68,8 @@ public class OxmSerializer implements InitializingBean, RedisSerializer<Object> 
 		this.unmarshaller = unmarshaller;
 	}
 
-	public Object deserialize(byte[] bytes) throws SerializationException {
+	@Override
+	public Object deserialize(@Nullable byte[] bytes) throws SerializationException {
 		if (SerializationUtils.isEmpty(bytes)) {
 			return null;
 		}

@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
 
 /**
  * Listener of messages published in Redis.
- * 
+ *
  * @author Costin Leau
  * @author Christoph Strobl
  */
@@ -29,7 +29,7 @@ public interface MessageListener {
 	 * Callback for processing received objects through Redis.
 	 *
 	 * @param message message must not be {@literal null}.
-	 * @param pattern pattern matching the channel (if specified) - can be null
+	 * @param pattern pattern matching the channel (if specified) - can be {@literal null}.
 	 */
 	void onMessage(Message message, @Nullable byte[] pattern);
 }

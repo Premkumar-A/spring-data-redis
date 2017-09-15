@@ -67,7 +67,7 @@ public interface RedisCacheWriter {
 	 * @param value The value stored for the key. Must not be {@literal null}.
 	 * @param ttl Optional expiration time. Can be {@literal null}.
 	 */
-	void put(String name, byte[] key, byte[] value, Duration ttl);
+	void put(String name, byte[] key, byte[] value, @Nullable Duration ttl);
 
 	/**
 	 * Get the binary value representation from Redis stored for the given key.

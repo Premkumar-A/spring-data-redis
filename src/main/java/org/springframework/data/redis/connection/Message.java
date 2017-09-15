@@ -30,14 +30,14 @@ public interface Message extends Serializable {
 	/**
 	 * Returns the body (or the payload) of the message.
 	 *
-	 * @return message body. Can be {@literal null}.
+	 * @return message body. Never {@literal null}.
 	 */
 	byte[] getBody();
 
 	/**
 	 * Returns the channel associated with the message.
 	 *
-	 * @return message channel. Can be {@literal null}.
+	 * @return message channel. Never {@literal null}.
 	 */
 	byte[] getChannel();
 }

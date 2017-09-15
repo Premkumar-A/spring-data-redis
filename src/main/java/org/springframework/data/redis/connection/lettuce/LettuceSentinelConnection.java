@@ -233,8 +233,6 @@ public class LettuceSentinelConnection implements RedisSentinelConnection {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void init() {
 
-		// TODO maybe move this to an instance initializer block.
-
 		if (connection == null) {
 			connection = provider.getConnection(StatefulRedisSentinelConnection.class);
 		}

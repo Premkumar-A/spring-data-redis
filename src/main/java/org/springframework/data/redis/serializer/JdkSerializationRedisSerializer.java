@@ -72,7 +72,8 @@ public class JdkSerializationRedisSerializer implements RedisSerializer<Object> 
 		this.deserializer = deserializer;
 	}
 
-	public Object deserialize(byte[] bytes) {
+	public Object deserialize(@Nullable byte[] bytes) {
+
 		if (SerializationUtils.isEmpty(bytes)) {
 			return null;
 		}
